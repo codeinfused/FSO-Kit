@@ -417,14 +417,9 @@
 				'<span style="font-weight:bold;">Enhanced</span>'+
 			'</div>'+
 			'<div class="smotherBox smotherPad">'+
-				'<button class="sit-open-all-dl">Open all download links</button>'+
+				'<button class="sit-open-all-dl">Toggle download panels</button>'+
 			'</div>'+
 		'').prependTo(actbox);
-		
-		$('.sit-open-all-dl').bind('click', function(){
-			$('.downloadIcon').trigger('click');
-			return false;
-		});
 		
 		$('.activity').each(function(){
 			var activitynum = $(this).attr('fs:activityid');
@@ -437,6 +432,53 @@
 				})
 			;
 		});
+		
+		// ===================================================================================================
+		// ////////////////////////////////////////////////////////////////////// Toggle Downloads Button
+		
+		$('.sit-open-all-dl').bind('click', function(){
+			var dls = $('.downloads');
+			dls[ ( dls.is(':visible')?'hide':'show' ) ]();
+			return false;
+		});
+		
+		$('.downloadIcon').each(function(){
+		
+			var oDownloadsPane = $(this).parent().parent().parent().find('.downloads');
+        	var oTaskAssetData = {};
+        
+            $.ajax({ 
+                type        : 'POST', 
+                url         : '/com/fullsail/lms/service/remote/Asset.cfc',
+                data        : {
+                    method: 'listTaskAssets',
+                    _taskId: $(this).parent().parent().parent().attr('fs:taskId'),
+                    _accessEventUUID: $('#assignments').attr('fs:accessEventUUID'),
+                    returnformat: 'json'
+                },
+                dataType    : 'json',
+                success     : function(response){
+                    if (response.success == true){
+                        //Build the content to be appended to the list.
+                        $(oDownloadsPane).empty();
+                        if(response.results > 0){
+                            for(var i=0;i<response.results;i++){
+                                var oItem = response.data[i];
+                                var sFileName = oItem.title + oItem.uuid + "." + oItem.extension;
+                                var sFileTitle = oItem.title + "." + oItem.extension;
+                                var sTaskAsset = "<li><a class='" + oItem.iconClass + "' href='" + oItem.assetURL + "'>" + sFileTitle + "</a></li>";
+                                $(oDownloadsPane).append(sTaskAsset);
+                            };
+                        }else{
+                            $(oDownloadsPane).append('<li>No files</li>');
+                        };
+                    };
+                }
+                                
+            });
+		
+		});
+		
 				
 		// ===================================================================================================
 		// ////////////////////////////////////////////////////////////////////// Exception Button Code
