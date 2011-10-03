@@ -379,7 +379,7 @@
 		$('.col980').css('width', '97%');
 		$('#leftCol').css('width', '78%');
 		$('.student .studentName').css({width:'auto'/*597*/, marginLeft:143});
-		$('.student .icons').css({width:143}).prepend('<li class="right fsokit-btn kit-grade" style=""><a href="#">G</a></li><li class="right fsokit-btn kit-except" style=""><a href="#">X</a></li>');
+		$('.student .icons').css({width:143}).prepend('<li class="right fsokit-btn kit-grade" style=""><a href="#" title="Quick Grade">G</a></li><li class="right fsokit-btn kit-except" style=""><a href="#" title="Give Exception">X</a></li>');
 		
 		// preload the preview page (first load always fails)
 		var tmpiframe = $('<iframe src="http://course.online.fullsail.edu/?fuseaction=lms.enterClassSection&classSectionId='+classSectionId+'" width="1" height="1" />').appendTo(document.body);
@@ -407,7 +407,7 @@
 						studentID = studentTXT.slice( studentTXT.indexOf('(')+1 , studentTXT.indexOf(')') ),
 						emailLink = 'mailto:' + studentEmails[studentID] + '?subject=Missing%20Activity&body=According%20to%20FSO%2C%20you%20have%20not%20completed%20the%20%22'+ activityName +'%22%20activity.%20%20Please%20contact%20me%20as%20soon%20as%20possible%20if%20this%20is%20in%20error.'
 					;
-					icons.prepend('<li class="right fsokit-btn kit-email" style=""><a href="'+ emailLink +'">E</a></li>');
+					icons.prepend('<li class="right fsokit-btn kit-email" style=""><a href="'+ emailLink +'" title="Email Student">E</a></li>');
 		        });
 		    }
 		});
