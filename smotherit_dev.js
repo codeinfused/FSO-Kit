@@ -147,7 +147,7 @@
 			
 			forcepush = (forcepush === 'Choose' || forcepush === 'Current') ? cb.find('input[name="pushDate"]').val() : forcepush;
 			forcepull = (forcepull === 'Choose' || forcepull === 'Current') ? cb.find('input[name="pullDate"]').val() : forcepull;
-						
+			
 			$.ajax({
 				type: "post",
 				dataType: "json",
@@ -159,7 +159,7 @@
 					_isImportant: 0,
 					_isViewable: true,
 					_sortOrder: cb.find('.sortOrder').val(),
-					_accessEventUUID: $('[name=accessEventUUID]').val(),
+					_accessEventUUID: $('#lmsVars').attr("fs:accesseventid"),
 					returnFormat: 'json',
 					_activeDate: forcepush,
 					_inactiveDate: forcepull
