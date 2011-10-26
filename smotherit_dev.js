@@ -1,6 +1,6 @@
 (function($){if(window.mikefsoapi!=="loaded"){
 
-	var version = 2.18,
+	var version = 2.19,
 		checkedboxes, 
 		txtbox, 
 		txtjson, 
@@ -35,7 +35,7 @@
 	// ///////////////////////////////////////////////// PAGE STYLES
 	
 	$('body > *:not(script)').wrapAll('<div id="ajaxsitwrap"></div>');
-	$('head').append('<link rel="stylesheet" href="http://wddbs.com/~SFW/smotherit/fsokit.css?v="'+version+' />');
+	$('head').append('<link rel="stylesheet" href="http://wddbs.com/~SFW/smotherit/fsokit.css?v='+version+'" />');
 	
 	
 	// ===================================================================================================
@@ -386,8 +386,10 @@
 		tmpiframe.bind('load', function(){
 			$(this).remove();
 		});
-				
+		
 		// scrape student emails from roster, add E and X button to icons
+		// ===================================================================================================
+		// ////////////////////////////////////////////////////////////////////// Button Maker & Student Email Scraper	
 		var studentEmails = {};
 		$.ajax({
 		    type:'get',
@@ -488,7 +490,8 @@
 				student = link.parent().parent().parent(),
 				sname = student.find('.studentName').text(),
 				gradeLink = student.find('.gradeIcon').attr('href'),
-				activityId = gradeLink.substring(gradeLink.indexOf('activityId=')+11, gradeLink.indexOf('&accountId')),
+				activityId = gradeLink.substring(gradeLink.indexOf('activityId=')+11, gradeLink.indexOf('&deliveryId')),
+				deliveryId = gradeLink.substring(gradeLink.indexOf('deliveryId=')+11, gradeLink.indexOf('&accountId')),
 				accountId = gradeLink.substring(gradeLink.indexOf('accountId=')+10, gradeLink.length)
 			;
 			sname = $.trim(sname.substring(0, sname.indexOf('(')-1));
@@ -531,6 +534,7 @@
 					        method          : 'saveStudentActivityDelivery',
 			                _accountId      : accountId,                               
 			                _activityId     : activityId,
+			                _deliveryId		: deliveryId,
 			                _classSectionId : classSectionId,
 			                _inactiveDate   : exceptPopup.find('.kit-entries input').val(),
 			                _accessEventUUID: accessId,
@@ -608,7 +612,8 @@
 				student = link.parent().parent().parent(),
 				sname = student.find('.studentName').text(),
 				gradeLink = student.find('.gradeIcon').attr('href'),
-				activityId = gradeLink.substring(gradeLink.indexOf('activityId=')+11, gradeLink.indexOf('&accountId')),
+				activityId = gradeLink.substring(gradeLink.indexOf('activityId=')+11, gradeLink.indexOf('&deliveryId')),
+				deliveryId = gradeLink.substring(gradeLink.indexOf('deliveryId=')+11, gradeLink.indexOf('&accountId')),
 				accountId = gradeLink.substring(gradeLink.indexOf('accountId=')+10, gradeLink.length)
 			;
 			sname = $.trim(sname.substring(0, sname.indexOf('(')-1));
@@ -657,6 +662,7 @@
 				.unbind()
 				.bind('submit', function(){
 					tipLoader.show();
+					
 					$.ajax({
 					    type: 'post',
 					    global: false,
@@ -664,6 +670,7 @@
 					    data:{
 					        _accountId: accountId,
 					        _activityId: activityId,
+					        _deliveryId: deliveryId,
 					        _classSectionId: classSectionId,
 					        _accessEventUUID: accessId,
 					        _gradeScore: gradesPopup.find('.kit-entries input').val(),
