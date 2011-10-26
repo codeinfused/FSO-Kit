@@ -25,7 +25,7 @@ button{padding: 2px 6px 3px 6px;}
 .kit-submit-bar{padding:6px; background:#333;}
 .kit-submit-bar input{padding:2px; border:none; background:#E85B1F; color:white;}
 .kit-submit-bar span{padding:2px; color:#bbb; font-size:10px;}
-.kit-error{display:none; position:absolute; z-index:1002; width:200px; left:280px; top:28px; padding:6px 6px 6px 36px; background:#aa0000; color:white; border:1px solid white; -moz-box-shadow:0 0 20px black; -webkit-box-shadow:0 0 20px black; box-shadow:0 0 20px black;}
+.kit-error{display:none; position:absolute; z-index:1002; width:200px; left:475px; top:28px; padding:6px 6px 6px 36px; background:#aa0000; color:white; border:1px solid white; -moz-box-shadow:0 0 20px black; -webkit-box-shadow:0 0 20px black; box-shadow:0 0 20px black;}
 
 .kit-entries{padding:0px 0px 8px;}
 .kit-entries p{margin:0; padding:4px 0 0 0;}

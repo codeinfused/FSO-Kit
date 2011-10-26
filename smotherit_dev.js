@@ -35,7 +35,7 @@
 	// ///////////////////////////////////////////////// PAGE STYLES
 	
 	$('body > *:not(script)').wrapAll('<div id="ajaxsitwrap"></div>');
-	$('head').append('<link rel="stylesheet" href="http://wddbs.com/~SFW/smotherit/fsokit.css" />');
+	$('head').append('<link rel="stylesheet" href="http://wddbs.com/~SFW/smotherit/fsokit.css?v="'+version+' />');
 	
 	
 	// ===================================================================================================
