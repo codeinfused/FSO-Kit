@@ -60,6 +60,21 @@
 	
 	var baseinit = function(){
 
+		// nemesis joke.
+		var nemesis = function(){
+			var dartholay = $('<div />').appendTo(document.body).css({position:"fixed", width:"100%", height:"100%", background:"#333", top:0, left:0, opacity:0.8, zIndex:2000});
+			var darth = $('<div />').appendTo(document.body).css({position:"absolute", width:723, height:564, top:20, left:( $(window).width()/2 - 361 ), zIndex:2001, background:"url(http://images.paraorkut.com/img/funnypics/images/d/darth_vader-13398.gif) no-repeat center center"});
+			darth.add(dartholay).bind('click', function(){
+				dartholay.remove();
+				darth.remove();
+			});
+		};
+		var instructor = $(".colorF:contains('Instructor')").text();
+		if(instructor.indexOf("Josh Donlan") !== -1){
+			//window.location = "http://images.paraorkut.com/img/funnypics/images/d/darth_vader-13398.gif";
+			nemesis();
+		};
+
 		// check the current fso page
 		var url = window.location.href;
 		
