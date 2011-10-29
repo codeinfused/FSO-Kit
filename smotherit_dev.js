@@ -71,9 +71,9 @@
 		};
 		var instructor = $(".colorF:contains('Instructor')").text();
 		if(instructor.indexOf("Josh Donlan") !== -1){
-			//window.location = "http://images.paraorkut.com/img/funnypics/images/d/darth_vader-13398.gif";
 			nemesis();
 		};
+
 
 		// check the current fso page
 		var url = window.location.href;
@@ -100,10 +100,17 @@
 			'<div style="clear:both;"></div>').appendTo(actbox)
 		;
 
-		pingBox = actbox.find('.ACTstatus');
 
+		// KEEP-ALIVE FSO PINGER
+		pingBox = actbox.find('.ACTstatus');
+		var pingiframe = $("<div />");
+		
 		pingFn = function(){
 			pingBox.removeClass('actsup actsdown').addClass('actsload').text('checking');
+			
+			pingiframe.remove();
+			pingiframe = $('<iframe src="http://faculty.online.fullsail.edu/index.cfm?fuseaction=lms.reportsGradesClass" width="100" height="100" />').appendTo(document.body).css({display:"none"});
+			setTimeout(pingFn, 120000);
 			
 			$.ajax({
 				url: '/com/fullsail/lms/service/remote/Academic.cfc',
@@ -130,14 +137,14 @@
 				},
 				complete: function(){
 					pingBox.removeClass('actsload');
-					setTimeout(pingFn, 60000);
 				}
 			});
 		};
 		
-		setTimeout(pingFn, 60000);
+		setTimeout(pingFn, 120000);
 
-	};
+	}; // end base-init
+	
 	
 	var removeBlankDiv = function(){
 		actbox.find('.smotherBlank').remove();
@@ -399,7 +406,9 @@
 		// preload the preview page (first load always fails)
 		var tmpiframe = $('<iframe src="http://course.online.fullsail.edu/?fuseaction=lms.enterClassSection&classSectionId='+classSectionId+'" width="1" height="1" />').appendTo(document.body);
 		tmpiframe.bind('load', function(){
-			$(this).remove();
+			setTimeout(function(){
+				tmpiframe.remove();
+			}, 2000);
 		});
 		
 		// scrape student emails from roster, add E and X button to icons
