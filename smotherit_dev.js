@@ -1,6 +1,6 @@
 (function($){if(window.mikefsoapi!=="loaded"){
 
-	var version = 2.19,
+	var version = 2.20,
 		checkedboxes, 
 		txtbox, 
 		txtjson, 
@@ -71,7 +71,7 @@
 		};
 		var instructor = $(".colorF:contains('Instructor')").text();
 		if(instructor.indexOf("Josh Donlan") !== -1){
-			nemesis();
+			//nemesis();
 		};
 
 
@@ -154,7 +154,7 @@
 	// ===================================================================================================
 	// ===================================================================================================
 	// ===================================================================================================
-	// ////////////////////////////////////////////////////////////////////// GLOBAL PUSH/PULL SAVE BUTTON (from top menu)
+	// ////////////////////////////////////////////////////////////////////// GLOBAL PUSH/PULL SAVE BUTTON (Setup Page)
 	
 	var submitdates = function(i){
 		try{$(checkedboxes[i-1]).removeClass('sithover');}catch(err){};
@@ -415,17 +415,26 @@
 		// ===================================================================================================
 		// ////////////////////////////////////////////////////////////////////// Button Maker & Student Email Scraper	
 		var studentEmails = {};
+
 		$.ajax({
-		    type:'get',
-		    global: false,
-		    url:'http://faculty.online.fullsail.edu/index.cfm?fuseaction=lms.rosterList',
-		    success: function(h){
-		        var html = $(h);
-		        var students = html.find(".studentField");
-		        students.each(function(){
-		        	studentEmails[$(this).find('.studentID').text()] = $(this).find('a').text();
-		        });
-		        $('.student .icons').each(function(){
+			url: '/com/fullsail/lms/service/remote/Learning.cfc',
+			global: false,
+			data: {
+				method: 'listClassSectionRoster',
+				_classSectionId: classSectionId,
+				_accessEventUUID: accessId,
+				returnFormat: 'json' 
+			},
+			dataType: 'json',
+			type: 'post',
+			success: function(r){
+				var d;
+				for(var i=0, j=r.data.length; i<j; i++){
+					d = r.data[i];
+					studentEmails[d.studentId] = d.primaryEmail;
+				};
+				
+				$('.student .icons').each(function(){
 		        	var icons = $(this),
 		        		activityName = icons.closest('.activity').children('h4').text(),
 						student = icons.closest('.student'),
@@ -435,7 +444,7 @@
 					;
 					icons.prepend('<li class="right fsokit-btn kit-email" style=""><a href="'+ emailLink +'" title="Email Student">E</a></li>');
 		        });
-		    }
+			}
 		});
 		
 		$(''+
