@@ -13,9 +13,13 @@ button{padding: 2px 6px 3px 6px;}
 
 .fsokit-btn a{text-decoration:none !important; text-align:center; background:#555; color:#fff !important; border:1px solid #999 inset; height:15px; width:15px; line-height:15px; padding:2px; margin-right:3px; display:block; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
 
-.fsovoice-btn a{text-decoration:none !important; text-align:center; background:#fff; color:#333 !important; border:1px solid #f5c inset; height:15px; width:auto; line-height:15px; padding:2px 6px; margin-right:3px; display:block; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
-.fsovoice-btn a:hover{background:#ccc;}
+.activity h4 a.kit-btn{text-decoration:none !important; font-size:11px; text-align:center; background:#555; color:#fff !important; border:1px solid #999 inset; height:15px; width:15px; line-height:15px; padding:2px 5px; margin-right:3px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
 
+.actbox-ver{float:left;}
+.actbox-btn a{text-decoration:none !important; float:left; text-align:center; background:#fff; color:#333 !important; border:1px solid #f5c inset; height:15px; width:auto; line-height:15px; padding:2px 6px; margin-left:8px; display:block; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
+.actbox-btn a:hover{background:#ccc;}
+
+.kit-tooltip-close{z-index:1006; cursor:pointer; position:absolute; top:-8px; right:-8px; width:16px; height:16px; -webkit-box-shadow: 0px 0px 7px 0px #000; -moz-box-shadow: 0px 0px 7px 0px #000; box-shadow: 0px 0px 7px 0px #000; background:url(http://wddbs.com/~SFW/smotherit/images/closeicon.jpg) no-repeat center center white; -webkit-border-radius: 14px; -moz-border-radius: 14px; border-radius: 14px; -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;}
 .kit-tooltip-wrap{z-index:1003; position:absolute; display:none;}
 .kit-tooltip-body{z-index:1004; position:relative; width:480px; -moz-box-shadow:0 0 20px black; -webkit-box-shadow:0 0 20px black; box-shadow:0 0 20px black; padding:10px; background:white;}
 .kit-loader{display:none; position:absolute; top:0; left:0; width:100%; height:100%; z-index:5; background:url(http://wddbs.com/~SFW/smotherit/images/fsokit-loader.gif) no-repeat center center white;}
@@ -33,3 +37,12 @@ button{padding: 2px 6px 3px 6px;}
 .kit-entries textarea{width:474px; height:120px; border:1px solid #666; padding:2px;}
 .grade-slider{float:right; width:370px; margin:4px 10px 4px 0px; background:#ddd; border:1px solid #777;}
 .kit-entries .grade-slider .ui-slider-handle{background:#E85B1F; border:1px solid #333;}
+
+.changelog{
+	position:absolute; top:100px; left:400px; width:340px; background:white; z-index:1052;
+	-moz-box-shadow:0 0 14px black; -webkit-box-shadow:0 0 14px black; box-shadow:0 0 14px black;
+}
+.changelog ul{list-style:none; margin:0; padding:0;}
+.changelog li{margin:0; padding:5px; background:#eee; border-top:1px solid #bbb; color:#505050; font-size:11px;}
+.changelog li.loveme{background:none; border:none; color:#777;}
+.changelog li.loveme img{}
